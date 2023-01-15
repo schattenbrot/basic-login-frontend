@@ -5,9 +5,8 @@ import { login } from '../../../modules/auth/libs/api';
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId:
-        '1068699111610-kroiklkv0iu4irn98hi4kvh39lc6p0dd.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
     }),
   ],
   callbacks: {
