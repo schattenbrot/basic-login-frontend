@@ -11,8 +11,10 @@ type LayoutProps = {
 const Layout = (props: LayoutProps) => {
   return (
     <>
-      <MainNavigation />
-      <main className={styles.main}>{props.children}</main>
+      <div className={styles.layoutContainer}>
+        <MainNavigation />
+        <main>{props.children}</main>
+      </div>
       <MainFooter />
     </>
   );

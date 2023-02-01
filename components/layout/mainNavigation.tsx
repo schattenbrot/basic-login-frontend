@@ -6,10 +6,12 @@ import styles from './mainNavigation.module.scss';
 import Image from 'next/image';
 import { User } from '../../models/user';
 import { getOwnUser } from '../../modules/profile/libs/api';
+import { useRouter } from 'next/router';
 
 const MainNavigation = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [user, setUser] = useState<User>();
+  const router = useRouter();
 
   useEffect(() => {
     if (session) {
@@ -29,11 +31,18 @@ const MainNavigation = () => {
 
   return (
     <header className={styles.header}>
-      <Link href='/'>
-        <a>
-          <div>Basic Login</div>
-        </a>
-      </Link>
+      <div className={styles.navigation}>
+        <Link href='/' passHref>
+          <a className={router.pathname == '/' ? styles.activeLink : ''}>
+            <div>Basic Login</div>
+          </a>
+        </Link>
+        <Link href='/waifus' passHref>
+          <a className={router.pathname == '/waifus' ? styles.activeLink : ''}>
+            <div>Waifu's</div>
+          </a>
+        </Link>
+      </div>
       <div className={styles.navigation}>
         <nav>
           <ul>

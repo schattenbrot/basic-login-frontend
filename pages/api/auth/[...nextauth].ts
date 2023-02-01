@@ -12,7 +12,7 @@ export const authOptions = {
   callbacks: {
     jwt: async ({ token, account, user }: any) => {
       if (account) {
-        const res = await login(user.email, user.image);
+        const res = await login(user.email, user.image, account.access_token);
         token.accessToken = res.accessToken;
         token.id = res.id;
         token.roles = res.roles;

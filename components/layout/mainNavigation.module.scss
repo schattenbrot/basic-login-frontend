@@ -25,7 +25,6 @@
   li {
     margin-left: 0;
 
-    a,
     button {
       text-decoration: none;
       border: none;
@@ -42,10 +41,14 @@
         box-shadow: 0 0 4px hsl(276, 58%, 73%);
       }
     }
+  }
 
-    a:hover {
-      color: hsl(276, 58%, 73%);
-    }
+  a:hover {
+    color: hsl(276, 58%, 73%);
+  }
+
+  .activeLink {
+    color: hsl(276, 58%, 63%);
   }
 }
 
