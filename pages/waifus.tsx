@@ -5,15 +5,15 @@ import Image from 'next/image';
 import { getNewWaifuImageUrl } from '../modules/waifus/libs/api';
 import Link from 'next/link';
 
-const Waifus: NextPage = () => {
-  const [waifuImageUrlHistory, setWaifuImageUrlHistory] = useState<string[]>(
-    [],
-  );
-  const [currentImageIndex, setCurrentImageIndex] = useState(-1);
+type WaifusProps = {
+  waifuImageUrl: string;
+};
 
-  useEffect(() => {
-    newWaifuImage();
-  }, []);
+const Waifus: NextPage<WaifusProps> = ({ waifuImageUrl }) => {
+  const [waifuImageUrlHistory, setWaifuImageUrlHistory] = useState<string[]>([
+    waifuImageUrl,
+  ]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     setCurrentImageIndex(waifuImageUrlHistory.length - 1);
@@ -78,6 +78,12 @@ const Waifus: NextPage = () => {
   );
 };
 
-Waifus.propTypes = {};
+export const getServerSideProps = async () => {
+  const waifuImageUrl = await getNewWaifuImageUrl();
+
+  return {
+    props: { waifuImageUrl },
+  };
+};
 
 export default Waifus;

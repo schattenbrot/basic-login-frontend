@@ -29,7 +29,6 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ user }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  // let session = await unstable_getServerSession(ctx);
   let session = await getSession(ctx);
 
   // redirect to sign in page if no session is found
