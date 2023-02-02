@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Deployment
+
+Build docker image from root dir from:
+
+> docker build -t basic-login -f deployment/Dockerfile.production .
+
+Run docker container with:
+
+> docker run --name basic-login --mount type=bind,source="$(pwd)"/.env.production,target=/app/.env.production --network="host" basic-login
+
 ## Getting Started
 
 First, run the development server:

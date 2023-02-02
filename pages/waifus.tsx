@@ -64,6 +64,7 @@ const Waifus: NextPage<WaifusProps> = ({ waifuImageUrl }) => {
         {waifuImageUrlHistory.length > 0 && currentImageIndex >= 0 ? (
           <Image
             src={waifuImageUrlHistory[currentImageIndex]}
+            alt='waifu image'
             layout='fill'
             objectFit='contain'
           ></Image>

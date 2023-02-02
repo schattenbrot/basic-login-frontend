@@ -2,6 +2,8 @@ import { GetServerSideProps, NextPage } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 
 import styles from '../styles/SignIn.module.scss';
+import { unstable_getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]';
 
 const SignIn: NextPage = () => {
   return (
@@ -13,8 +15,8 @@ const SignIn: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  let session = await getSession(ctx);
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  let session = await unstable_getServerSession(req, res, authOptions);
 
   if (session) {
     return {

@@ -39,7 +39,7 @@ const MainNavigation = () => {
         </Link>
         <Link href='/waifus' passHref>
           <a className={router.pathname == '/waifus' ? styles.activeLink : ''}>
-            <div>Waifu's</div>
+            <div>Waifus</div>
           </a>
         </Link>
       </div>
@@ -57,7 +57,9 @@ const MainNavigation = () => {
         </nav>
         <Link href='/profile'>
           <div className={styles.avatar}>
-            {user && <Image src={user?.image ?? ''} layout='fill' />}
+            {user && (
+              <Image src={user?.image ?? ''} alt='user avatar' layout='fill' />
+            )}
           </div>
         </Link>
       </div>

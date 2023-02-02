@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { getOwnUser } from '../modules/profile/libs/api';
 import { User } from '../models/user';
 import { getSession } from 'next-auth/react';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth';
 
 type ProfilePageProps = {
   user: User;
@@ -28,8 +30,8 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ user }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  let session = await getSession(ctx);
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  let session = await unstable_getServerSession(req, res, authOptions);
 
   // redirect to sign in page if no session is found
   if (!session) {
