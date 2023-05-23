@@ -14,7 +14,7 @@ const TicTacToePage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <h1 className='text-5xl mb-5'>Tic Tac Toe Game</h1>
+      <h1 className='text-5xl mb-5'>Tic Tac Toe</h1>
 
       <TicTacToe />
     </div>

@@ -7,14 +7,6 @@ const TicTacToe = () => {
   const [winner, setWinner] = useState<Player | ''>('');
   const [winningFields, setWinningFields] = useState<number[]>([]);
 
-  const handleSelectField = (pos: number) => {
-    if (board[pos] !== '') return;
-    let updatedBoard = [...board];
-    updatedBoard[pos] = currentPlayer;
-    setBoard(updatedBoard);
-    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
-  };
-
   useEffect(() => {
     const winningCombos = [
       [0, 1, 2],
@@ -36,11 +28,51 @@ const TicTacToe = () => {
       }
     });
   }, [board]);
+
+  const handleSelectField = (pos: number) => {
+    if (board[pos] !== '') return;
+    let updatedBoard = [...board];
+    updatedBoard[pos] = currentPlayer;
+    setBoard(updatedBoard);
+    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+  };
+
+  const handleReset = () => {
+    setBoard(Array(9).fill(''));
+    setCurrentPlayer('X');
+    setWinner('');
+    setWinningFields([]);
+  };
+
   return (
     <div>
-      <h2 className='text-3xl text-center mb-3'>
-        Winner: <span className='text-pink-300'>{winner ?? 'None'}</span>
-      </h2>
+      {!winner && (
+        <h2 className='text-3xl text-center mb-3'>
+          Current Player:{' '}
+          <span
+            className={currentPlayer === 'X' ? 'text-blue-400' : 'text-red-400'}
+          >
+            {currentPlayer}
+          </span>
+        </h2>
+      )}
+      {winner && (
+        <>
+          <h2 className='text-3xl text-center mb-3'>
+            Winner: <span className='text-pink-300'>{winner ?? 'None'}</span>
+          </h2>
+
+          <div className='grid place-items-center'>
+            <button
+              type='reset'
+              className='text-xl text-center text-red-400 mb-3'
+              onClick={handleReset}
+            >
+              Restart
+            </button>
+          </div>
+        </>
+      )}
 
       <div className='grid grid-cols-3 grid-rows-3'>
         {board.map((cell, index) => (

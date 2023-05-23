@@ -42,6 +42,15 @@ const MainNavigation = () => {
             <div>Waifus</div>
           </a>
         </Link>
+        <Link href='/tic-tac-toe' passHref>
+          <a
+            className={
+              router.pathname == '/tic-tac-toe' ? styles.activeLink : ''
+            }
+          >
+            <div>TicTacToe</div>
+          </a>
+        </Link>
       </div>
       <div className={styles.navigation}>
         <nav>
