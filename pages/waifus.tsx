@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
-import styles from '../styles/Waifus.module.scss';
 import Image from 'next/image';
 import { getNewWaifuImageUrl } from '../modules/waifus/libs/api';
 import Link from 'next/link';
@@ -39,28 +38,32 @@ const Waifus: NextPage<WaifusProps> = ({ waifuImageUrl }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.imageControls}>
+    <div className='flex flex-col items-center gap-4'>
+      <div className='flex gap-1'>
         <button
           type='button'
-          className={styles.button}
+          className='min-w-[6rem] text-primary-light text-lg bg-background border-background border-2 rounded-2xl m-0 p-4 hover:border-background-lightextreme active:bg-background-light'
           onClick={prevWaifuImage}
         >
           Prev
         </button>
-        <button type='button' className={styles.button} onClick={newWaifuImage}>
+        <button
+          type='button'
+          className='min-w-[6rem] text-primary-light text-lg bg-background border-background border-2 rounded-2xl m-0 p-4 hover:border-background-lightextreme active:bg-background-light'
+          onClick={newWaifuImage}
+        >
           New
         </button>
         <button
           type='button'
-          className={styles.button}
+          className='min-w-[6rem] text-primary-light text-lg bg-background border-background border-2 rounded-2xl m-0 p-4 hover:border-background-lightextreme active:bg-background-light'
           onClick={nextWaifuImage}
         >
           Next
         </button>
       </div>
 
-      <div className={styles.imageContainer}>
+      <div className='flex-1 flex items-center justify-center relative h-full w-full'>
         {waifuImageUrlHistory.length > 0 && currentImageIndex >= 0 ? (
           <Image
             src={waifuImageUrlHistory[currentImageIndex]}
@@ -71,9 +74,11 @@ const Waifus: NextPage<WaifusProps> = ({ waifuImageUrl }) => {
         ) : null}
       </div>
 
-      <div className={styles.apiInfo}>
-        <h2>Used API</h2>
-        <Link href='https://waifu.pics/docs'>waifu.pics</Link>
+      <div className='text-center'>
+        <h2 className='text-primary'>Used API</h2>
+        <Link href='https://waifu.pics/docs' className='text-primary-light'>
+          waifu.pics
+        </Link>
       </div>
     </div>
   );

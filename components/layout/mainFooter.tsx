@@ -1,10 +1,8 @@
 import React from 'react';
 
-import styles from './mainFooter.module.scss';
-
 const MainFooter = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className='flex p-4 border-t-2 justify-center items-center'>
       <a
         href='https://schattenbrot.com'
         target='_blank'

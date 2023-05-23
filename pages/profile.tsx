@@ -1,11 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import styles from '../styles/Profile.module.scss';
 import Head from 'next/head';
 import { getOwnUser } from '../modules/profile/libs/api';
 import { User } from '../models/user';
-import { getSession } from 'next-auth/react';
 import { authOptions } from './api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth';
 
 type ProfilePageProps = {
   user: User;
@@ -13,15 +11,15 @@ type ProfilePageProps = {
 
 const ProfilePage: NextPage<ProfilePageProps> = ({ user }) => {
   return (
-    <div className={styles.container}>
+    <div className='w-full h-full flex justify-center items-center'>
       <Head>
         <title>Profile</title>
         <meta name='description' content='User profile' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <div className={styles.main}>
-        <div className={styles.email}>
+      <div className='flex flex-col gap-4 w-[40rem] p-8'>
+        <div className='flex justify-between'>
           <div>Email:</div>
           <div>{user?.email}</div>
         </div>
@@ -31,7 +29,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ user }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  let session = await unstable_getServerSession(req, res, authOptions);
+  let session = await getServerSession(req, res, authOptions);
 
   // redirect to sign in page if no session is found
   if (!session) {
